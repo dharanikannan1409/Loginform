@@ -1,0 +1,82 @@
+package loginform;
+	import java.awt.*;
+	import java.awt.event.*;
+	import javax.swing.*;
+	public class demo extends JFrame implements ActionListener {
+	JPanel mypanel;
+	   JLabel  emailid_label,password_label, message;
+	   JTextField emailid_text;
+	   JPasswordField password_text;
+	   JButton submit, cancel;
+	   demo() {
+	     
+	      emailid_label = new JLabel();
+	      emailid_label.setText("EmailId :");
+	      emailid_text = new JTextField();
+	      
+	      password_label = new JLabel();
+	      password_label.setText("Password :");
+	      password_text = new JPasswordField();
+	      
+	      submit = new JButton("SUBMIT");
+	      mypanel = new JPanel(new GridLayout(3, 1));
+	      mypanel.add(emailid_label);
+	      mypanel.add(emailid_text);
+	      mypanel.add(password_label);
+	      mypanel.add(password_text);
+	      message = new JLabel();
+	      mypanel.add(message);
+	      mypanel.add(submit);
+	      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	      
+	      submit.addActionListener(this);
+	      add(mypanel, BorderLayout.CENTER);
+	      setTitle(" Login Here !");
+	      setSize(450,350);
+	      setVisible(true);
+	   }
+	   public static void main(String[] args) {
+	      new demo();
+	   }
+	   @Override
+	   public void actionPerformed(@SuppressWarnings("exports") ActionEvent ae) {
+		  
+	      String emailid = emailid_text.getText();
+	      @SuppressWarnings("deprecation")
+		String password = password_text.getText();
+	     
+	        Boolean password_text = false;
+	        Boolean emailid_text = false;
+	        
+
+	        if (emailid.matches("[\\w]+@[\\w]+\\.[a-zA-Z]{2,3}"))
+                emailid_text= true;
+            else
+                emailid_text = false;
+	      
+	        if ((password.matches(".*[^\\w\\s].*")) &&
+	                        (password.matches(".*[a-zA-Z].*")) &&
+	                        (password.matches(".*[0-9].*")) &&
+	                        (password.length() >= 8))
+	                    password_text = true;
+	                else
+	                    password_text = false;
+	        if (password_text && emailid_text)
+                System.out.println(" Welcome User!!");
+	        else {
+                if (!emailid_text)
+                    System.out.println(" Re-enter your email: ");
+                if (!password_text)
+                    System.out.println(" Re-enter your password: ");
+            }
+
+        
+         
+
+        } 
+	       
+
+	     
+	   }
+
+
